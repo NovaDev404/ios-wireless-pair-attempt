@@ -1,4 +1,11 @@
 # WebTrust Windows
+A failed attempt to make wireless iOS pairing
+
+---
+`lockdown-client` - My original attempt at full wireless pairing file generation  
+`lockdown-simple` - My second attempt to just extract the public key from the devicecertificate from a request  
+`server.js` - The main server code
+
 
 ## Run
 1. Install WireGuard for Windows
