@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebTrust</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.4; }
+    .row { margin: 10px 0; }
+    code, pre, textarea { font-family: ui-monospace, Consolas, monospace; }
+    pre, textarea { padding: 12px; border: 1px solid #ddd; white-space: pre-wrap; word-break: break-word; overflow: auto; }
+    pre { min-height: 72px; }
+    textarea { width: 100%; min-height: 180px; box-sizing: border-box; }
+    button, a.button {
+      padding: 8px 12px; border: 1px solid #ccc; background: #f7f7f7; color: inherit;
+      text-decoration: none; display: inline-block; cursor: pointer; margin-right: 6px; margin-top: 4px;
+    }
+    .ok { color: #1b7f1b; font-weight: 700; }
+    .warn { color: #8a5a00; font-weight: 700; }
+    .small { color: #666; font-size: 0.95rem; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  </style>
+</head>
+<body>
+  <h1>WebTrust</h1>
+
+  <div class="row">Host: <code id="host">loading...</code></div>
+  <div class="row">Client IP: <code id="clientIp">loading...</code></div>
+  <div class="row">Status: <strong id="status">loading...</strong></div>
+  <div class="row small" id="details"></div>
+
+  <div class="row">
+    <a id="downloadClient" class="button" href="#">Download client .conf</a>
+    <a id="downloadServer" class="button" href="#">Download server .conf</a>
+    <button id="startServerBtn">Start server tunnel</button>
+    <button id="reloadPeerBtn">Add peer again</button>
+    <button id="startPairingBtn">Extract iOS Public Key</button>
+  </div>
+
+  <div class="row" id="pairingStatus" style="display: none;">
+    <strong>iOS Public Key Extraction: </strong><span id="pairingStatusText">Initializing...</span>
+    <a id="downloadPairing" class="button" href="#" style="display: none;">Download Public Key</a>
+  </div>
+
+  <div class="row" id="debugSection" style="display: none;">
+    <h3>Lockdown Debug Logs</h3>
+    <pre id="debugLogs" style="max-height: 400px; overflow-y: auto;"></pre>
+  </div>
+
+  <div class="grid">
+    <div>
+      <h3>Config preview</h3>
+      <textarea id="preview" readonly></textarea>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

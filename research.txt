@@ -1,0 +1,14 @@
+What your code shows is that it is already hitting the exact wall you described: it asks for `DevicePublicKey` **before** pairing, then falls back to a placeholder when the device denies it, and the pairing flow treats `Result: Success` as enough even when `EscrowBag` is missing. That is why you see a “successful” pair that is not actually a full trusted pair.  
+
+The other important bit is in your own `getDeviceCertificateViaSSL()` path: you already noted that standard Node TLS is not a compatible lockdown SSL implementation, and you then try to get the public key after `StartSession`. That path depends on a session that normally comes **after** a valid pair record, so it does not solve first-pair trust. 
+
+So the practical answer is: WireGuard can carry the traffic, but it does not replace the trust step. For a first wireless pair, the supported route is still to establish trust once through Apple’s normal pairing process, then wireless sync can work afterward. After that, your tunnel can be useful for keeping the device reachable over the network.
+
+The main fixes I would make in the code, on the legitimate side, are:
+
+* stop treating a minimal `Pair` response as a full trusted pairing;
+* require `ValidatePair` to succeed before calling the result usable;
+* only proceed to `StartSession` after a valid pair record exists;
+* persist and reuse the real pair record instead of generating placeholder certs.  
+
+If you want, I can help you turn this into a proper “wireless after first trust” flow and clean up the pairing state machine so it fails honestly instead of pretending the pair is complete.
