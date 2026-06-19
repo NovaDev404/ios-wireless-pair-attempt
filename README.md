@@ -1,5 +1,6 @@
 # WebTrust Windows
-A failed attempt to make wireless iOS pairing
+A failed attempt to make wireless iOS pairing  
+For working wireless RPPairing pairing on iOS 27, check out [StephenDev0/StikPair](https://github.com/StephenDev0/StikPair).
 
 ---
 `lockdown-client` - My original attempt at full wireless pairing file generation  
