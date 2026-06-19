@@ -24,8 +24,3 @@ Open the site in your browser.
 - Turn the tunnel on
 
 When the handshake reaches the server, the page shows **Connection received!**
-
-## Important
-- The endpoint must be reachable from the iPhone
-- If you're testing from outside your home network, your router needs UDP forwarding for port 51820
-- The server needs to be started as Administrator for tunnel install/start to work
